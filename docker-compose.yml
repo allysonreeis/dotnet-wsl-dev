@@ -1,0 +1,35 @@
+services:
+  dotnet:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: dotnet-youtube
+    container_name: dotnet7
+    tty: true
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    volumes:
+      - .:/app/
+    networks:
+      - dotnetwork
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql
+    user: root
+    tty: true
+    restart: always
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=yourStrong(!)Password
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./data:/var/opt/mssql/data
+    networks:
+      - dotnetwork
+
+networks:
+  dotnetwork:
+    driver: bridge
