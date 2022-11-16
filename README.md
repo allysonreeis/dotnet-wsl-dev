@@ -2,12 +2,12 @@
 <h3 align="center">Indice</h3>
 
 1. [WSL2](#1-wsl2)
-    1.1 [Limitando o uso de recursos do WSL na sua máquina](#11-limitando-o-uso-de-recursos-do-wsl-na-sua-máquina)
+   - 1.1 [Limitando o uso de recursos do WSL na sua máquina](#11-limitando-o-uso-de-recursos-do-wsl-na-sua-máquina)
 2. [Instalando o DOCKER](#2-instalando-o-docker)
-    2.1 [Preparando os repositórios](#21-preparando-os-repositórios)
-    2.2 [Instalando o Docker Engine](#22-instalando-o-docker-engine)
-    2.3 [Verificando se a instalação teve sucesso](#23-verificando-se-a-instalação-teve-sucesso)
-        2.3.1 [Deve retornar "Starting Docker: docker"](#231-deve-retornar-starting-docker-docker)
+    - 2.1 [Preparando os repositórios](#21-preparando-os-repositórios)
+    - 2.2 [Instalando o Docker Engine](#22-instalando-o-docker-engine)
+    - 2.3 [Verificando se a instalação teve sucesso](#23-verificando-se-a-instalação-teve-sucesso)
+     - 2.3.1 [Deve retornar "Starting Docker: docker"](#231-deve-retornar-starting-docker-docker)
 3. [Criando um container .NET com OH-my-ZSH](#3-criando-um-container-net-com-oh-my-zsh)
 4. [Docker File & Docker Compose](#4-docker-file--docker-compose)
 
