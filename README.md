@@ -1,10 +1,23 @@
-# Indice
+<h1 align="center">Olá! <img src="https://raw.githubusercontent.com/kaueMarques/kaueMarques/master/hi.gif" width="30px"></h1>
+<h3 align="center">Indice</h3>
 
+1. [WSL2](#1-wsl2)
+    1.1 [Limitando o uso de recursos do WSL na sua máquina](#11-limitando-o-uso-de-recursos-do-wsl-na-sua-máquina)
+2. [Instalando o DOCKER](#2-instalando-o-docker)
+    2.1 [Preparando os repositórios](#21-preparando-os-repositórios)
+    2.2 [Instalando o Docker Engine](#22-instalando-o-docker-engine)
+    2.3 [Verificando se a instalação teve sucesso](#23-verificando-se-a-instalação-teve-sucesso)
+        2.3.1 [Deve retornar "Starting Docker: docker"](#231-deve-retornar-starting-docker-docker)
+3. [Criando um container .NET com OH-my-ZSH](#3-criando-um-container-net-com-oh-my-zsh)
+4. [Docker File & Docker Compose](#4-docker-file--docker-compose)
+
+<hr>
+Este repositório é voltado para a instalação de um ambiente de desenvolvimento Windows/Linux com .NET 7, 6 e/ou 5, usando docker e WSL2.
 
 Para a instalação desse ambiente de desenvolvimento, você precisa ter instalado o Windows Terminal, o Visual Studio Code e o WSL2 com alguma distro Linux da sua preferência. Aqui usarei o Ubuntu, mas você pode ficar livre para escolher qual desejar. Lembrando que irá precisar adaptar a instalação das ferramentas para a sua distro.
 
-# WSL2
-## Limitando o uso de recursos do WSL na sua máquina
+# 1. WSL2
+## 1.1 Limitando o uso de recursos do WSL na sua máquina
 Caso o WSL esteja consumindo muito recurso da sua máquina, você pode limitar isso criando um arquivo com o nome ".wslconfig" na pasta de usuários no seu computador "c:\users\\\<seuUsuario>".
 Crie o aquivo e adicione a seguinte configuração:
 
@@ -15,8 +28,8 @@ processors=4
 swap=2GB
 ```
 
-# Instalando o DOCKER
-## Preparando os repositórios
+# 2. Instalando o DOCKER
+## 2.1 Preparando os repositórios
 
 Se você preferir, pode acompanhar a instalação direto no site do Docker clicando aqui [Instalação do Docker](https://docs.docker.com/engine/install/ubuntu/)
 
@@ -52,7 +65,7 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
-## Instalando o Docker Engine
+## 2.2 Instalando o Docker Engine
 
 ```bash
 sudo apt-get update
@@ -62,9 +75,9 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 ```
 
-## Verificando se a instalação teve sucesso
+## 2.3 Verificando se a instalação teve sucesso
 
-### 1. Deve retornar "Starting Docker: docker"
+### 2.3.1 Deve retornar "Starting Docker: docker"
 ```bash
 sudo service docker start
 ```
@@ -73,7 +86,7 @@ sudo service docker start
 sudo docker run hello-world
 ```
 
-# Criando um container .NET com OH-my-ZSH
+# 3. Criando um container .NET com OH-my-ZSH
 
 Este passo é apenas para teste. Não é necessário que você execute esse comando. Se desejar você pode ir para [sdf]
 
@@ -110,6 +123,6 @@ Agora é possível entrar no container pelo comando exec.
 docker exec -it <nome do container> zsh
 ```
 
-# Docker File & Docker Compose 
+# 4. Docker File & Docker Compose 
 Aqui começa a parte mais interessante, pois trabalhar com o docker apenas na linha de comando pode se tornar algo bem cansativo com o passar do tempo. O uso do docker compose junto com o Dockerfile irá trazer uma grande liberdade e clareza na criação de imagens e containers. 
 Para que possamos começar a usar os dois, crie um arquivo com o seguinte nome "docker-compose.yml" e outro arquivo com o nome "Dockerfile", você pode acompanhar todo o código clicando [Dockerfile](https://github.com/allysonreeis/dotnet-wsl-dev/blob/main/Dockerfile) e no [Docker Compose](https://github.com/allysonreeis/dotnet-wsl-dev/blob/main/docker-compose.yml).
