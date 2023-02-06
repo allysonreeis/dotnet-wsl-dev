@@ -86,12 +86,17 @@ sudo service docker start
 sudo docker run hello-world
 ```
 
+Removendo a necessidade de usar o "sudo"
+```bash
+sudo usermod -aG docker $USER
+```
+
 # 3. Criando um container .NET com OH-my-ZSH
 
 Este passo é apenas para teste. Não é necessário que você execute esse comando. Se desejar você pode ir para [Docker File & Docker Compose](#4-docker-file--docker-compose)
 
 ```bash
-docker run -dit --name restapinet6 -p 5000:5000 -p 5001:5001 -v $(pwd):/app/ mcr.microsoft.com/dotnet/sdk:6.0 /bin/bash -c "apt-get update && apt-get install -y zsh && wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh && echo | sh install.sh && chsh -s $(which zsh) && wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb && apt-get update && apt-get install -y dotnet-sdk-5.0 && useradd -r -u 1000 -d /app dotnet && zsh"
+docker run -dit --name restapinet6 -p 5000:5000 -p 5001:5001 -v $(pwd):/app/ mcr.microsoft.com/dotnet/sdk:6.0 /bin/bash -c "apt-get update && apt-get install -y zsh && wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh && echo | sh install.sh && chsh -s $(which zsh) | echo && wget https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && dpkg -i packages-microsoft-prod.deb && rm packages-microsoft-prod.deb && apt-get update && apt-get install -y dotnet-sdk-5.0 && useradd -r -u 1000 -d /app dotnet && zsh"
 ```
 
 Caso você deseje usar esse container, é necessário que gere uma nova imagem para aí sim, criar e usar o container. Tudo isso baseado no código docker acima. 
