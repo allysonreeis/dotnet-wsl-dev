@@ -86,7 +86,7 @@ sudo service docker start
 sudo docker run hello-world
 ```
 
-Removendo a necessidade de usar o "sudo"
+Adicionando o seu usuário atual ao grupo do Docker. Isso vai fazer com que você consiga executar os comandos do Docker sem a necessidade de permissão de super usuário, "sudo".
 ```bash
 sudo usermod -aG docker $USER
 ```
