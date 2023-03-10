@@ -10,6 +10,10 @@
      - 2.3.1 [Deve retornar "Starting Docker: docker"](#231-deve-retornar-starting-docker-docker)
 3. [Criando um container .NET com OH-my-ZSH](#3-criando-um-container-net-com-oh-my-zsh)
 4. [Docker File & Docker Compose](#4-docker-file--docker-compose)
+5. [Comandos úteis](#5-comandos-%C3%BAteis)
+   - 5.1 [Linux](#51-linux)
+   - 5.2 [Docker](#52-docker)
+6. [Connection String](#6-connection-string)
 
 <hr>
 Este repositório é voltado para a instalação de um ambiente de desenvolvimento Windows/Linux com .NET 7, 6 e/ou 5, usando docker e WSL2.
@@ -131,3 +135,81 @@ docker exec -it <nome do container> zsh
 # 4. Docker File & Docker Compose 
 Aqui começa a parte mais interessante, pois trabalhar com o docker apenas na linha de comando pode se tornar algo bem cansativo com o passar do tempo. O uso do docker compose junto com o Dockerfile irá trazer uma grande liberdade e clareza na criação de imagens e containers. 
 Para que possamos começar a usar os dois, crie um arquivo com o seguinte nome "docker-compose.yml" e outro arquivo com o nome "Dockerfile", você pode acompanhar todo o código clicando [Dockerfile](https://github.com/allysonreeis/dotnet-wsl-dev/blob/main/Dockerfile) e no [Docker Compose](https://github.com/allysonreeis/dotnet-wsl-dev/blob/main/docker-compose.yml).
+
+
+# 5. Comandos úteis
+
+## 5.1 Linux
+
+```bash
+#Informa se você está em um terminal dentro ou fora de um container
+grep -q docker /proc/self/cgroup && echo "in Docker container" || echo "not in Docker container”
+
+#Mostra os usuários da máquina
+cat /etc/passwd
+
+#Mostra o usuário atual da máquina
+whoami
+```
+
+## 5.2 Docker
+
+```bash
+#Inicia ou para o serviço do docker
+sudo service docker start
+sudo service docker stop
+
+#Mostra os container que estão rodando
+docker ps
+
+#Mostra todos os containers que estão rodando e parados
+docker ps -a
+
+#apaga um container
+# pode-se adicinar o parâmetro -f para forçar a exclusão
+docker container rm <nome_do_container>
+
+#apaga uma imagem
+# pode-se adicinar o parâmetro -f para forçar a exclusão
+docker rmi <nome_da_imagem>
+
+#Mostra as imagens criadas
+docker images
+
+#Mostra os logs do container
+docker logs <nome_do_container>
+
+#Para um container
+docker stop <nome_do_container>
+
+#Cria um novo container
+# parâmetros
+# -d -> detached, roda um container em segundo plano
+# -i -> ativa o modo interativo do container
+# -t -> ativa o TTY. Vincula o console atual com o do container
+# --name -> especifica um nome pro container
+# -v -> cria um volume
+# -p -> expõe uma porta e mapeia pro host
+docker run 
+
+#Exibe as informações do container
+docker container inspect <nome_do_container>
+
+#Sobe todos os containers definidos no arquivo docker compose. --build é interessante para quando há alguma alteração no Dockerfile
+docker compose up -d --build
+
+# Para todos os container e deleta
+docker compose down
+
+#Para todos os container sem deletar
+docker compose stop
+
+#Inicia todos os containers
+docker compose start
+```
+
+# 6. Connection String
+
+```bash
+"Server=<nome_do_container>,1433;Database=<nome_do_banco>;User=sa;Password=yourStrong(!)Password;TrustServerCertificate=True;"
+```
